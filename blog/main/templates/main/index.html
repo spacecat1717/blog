@@ -1,0 +1,10 @@
+<!--main page template-->
+{% extends "main/base.html" %}
+
+<body>
+    {% block content %}
+    <h3>Test text</h3>
+    <a href="{% url 'main:topics' %}">Topics</a>
+    <a href="#">About</a>
+    {% endblock %}
+</body>
