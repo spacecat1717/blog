@@ -1,8 +1,14 @@
 <!--topics list template--->
 {% extends "main/base.html" %}
+{% load bootstrap5 %}
 
 <body>
     {% block content %}
+    <br>
+    <div>
+      <a href="{% url 'main:new_topic' %}" class="btn btn-outline-secondary">Add topic</a>
+    </div>
+    <br>
     <div class="list-group w-auto">
       {% for topic in topics %}
       <a href="{% url 'main:topic' topic.id %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
@@ -16,5 +22,5 @@
       </a>
       {% endfor %}
     </div>
-    {% endblock content %}
+    {% endblock %}
   </body>

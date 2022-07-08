@@ -3,7 +3,10 @@
 
 <body>
     {% block content %}
-    <section class="py-5 text-center container-fluid" style="background-color: #336600">
+    
+    <a class="btn btn-primary" style="background-color: #333333" href="{% url 'main:new_note' topic.id %}">New note</a>
+    
+    <section class="py-5 text-center container-fluid" style="background-color: #CCCCCC">
         <div class="row py-lg-0">
           <div class="col-sm-3 col-sm-6 mx-auto">
           </div>
@@ -13,7 +16,7 @@
                   {% for note in notes %}
                   <div class="col-md-3">
                       <div class="card shadow-sm">
-                          <img class="bd-placeholder-img card-img-top" width="150" height="300" src="{{ note.photo1.url }}">
+                          <img class="bd-placeholder-img card-img-top img-thumbnail" width="150" height="300" src="{{ note.photo1.url }}">
                           <div class="card-body">
                               <h4 class="card-title">{{ note.titile }}</h4>
                               <p class="card-text">{{note.text | linebreaks}}</p>

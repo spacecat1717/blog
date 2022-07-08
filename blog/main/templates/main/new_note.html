@@ -1,0 +1,13 @@
+<!--new note template-->
+{% extends "main/base.html" %}
+{% load bootstrap5 %}
+
+<body>
+    {% block contnt %}
+    <form method="post" enctype="multipart/form-data" class="form-control form-control-sm">
+        {% csrf_token %}
+        {% bootstrap_form note_form%}
+        <button class="btn btn-primary" style="background-color: #333333" name='submit' > Submit</button>
+    </form>
+    {%endblock %}
+</body>
