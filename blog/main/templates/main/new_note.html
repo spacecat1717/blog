@@ -3,8 +3,10 @@
 {% load bootstrap5 %}
 
 <body>
-    {% block contnt %}
-    <form method="post" enctype="multipart/form-data" class="form-control form-control-sm">
+    {% block content %}
+    <p> <a href="{% url 'main:topic' topic.id %}">{{ topic }}</a></p>
+
+    <form  action="{% url 'main:new_note' topic.id %}" method="post" enctype="multipart/form-data" class="form-control form-control-sm">
         {% csrf_token %}
         {% bootstrap_form note_form%}
         <button class="btn btn-primary" style="background-color: #333333" name='submit' > Submit</button>

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from .models import Topic, Note
 from .forms import TopicForm, NoteForm
@@ -13,7 +14,7 @@ def topics(request):
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     notes = topic.note_set.order_by('-date')
-    return render(request, 'main/topic.html', {'notes': notes})
+    return render(request, 'main/topic.html', {'topic': topic, 'notes': notes})
 
 def new_topic(request):
     if request.method != 'POST': 
@@ -26,11 +27,15 @@ def new_topic(request):
     return render (request, 'main/new_topic.html', {'form': form})
 
 def new_note(request, topic_id):
-    topic = Topic.objects.get(id=topic_id)
-    if request.method == 'POST':
-        note_form = NoteForm(data=request.POST)
+    topic = get_object_or_404(Topic, id=topic_id)
+    if request.method != 'POST':
+        note_form = NoteForm()
+    else:
+        note_form = NoteForm(request.POST, request.FILES)
         if note_form.is_valid():
-            note_form.save()
+            new_note = note_form.save(commit=False)
+            new_note.topic = topic
+            img_obj = note_form.instance
+            new_note.save()
             return redirect('main:topic', topic_id=topic_id)
-    note_form = NoteForm()
-    return render (request, 'main/new_note.html', {'note_form': note_form})
+    return render (request, 'main/new_note.html', {'topic': topic, 'note_form': note_form})

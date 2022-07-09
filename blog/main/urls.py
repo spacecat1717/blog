@@ -11,6 +11,6 @@ urlpatterns = [
     path('topics/<topic_id>/', views.topic, name='topic'),
     #forms patterns
     path('new_topic/', views.new_topic, name='new_topic'),
-    path('<int:topic_id>/new_note/', views.new_note, name='new_note'),
+    path('new_note/<topic_id>/', views.new_note, name='new_note'),
 
 ]

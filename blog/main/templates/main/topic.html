@@ -3,9 +3,7 @@
 
 <body>
     {% block content %}
-    
-    <a class="btn btn-primary" style="background-color: #333333" href="{% url 'main:new_note' topic.id %}">New note</a>
-    
+    <a class="btn btn-primary" style="background-color: #333333" href="/new_note/{{ topic.id }}/">New note</a>
     <section class="py-5 text-center container-fluid" style="background-color: #CCCCCC">
         <div class="row py-lg-0">
           <div class="col-sm-3 col-sm-6 mx-auto">
