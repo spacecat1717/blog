@@ -1,11 +1,13 @@
 from django.db import models
 from django.conf import settings
+from account.models import Account
 import datetime
 
 """Basic models"""
 class Topic(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
+    owner = models.ForeignKey(Account, on_delete=models.CASCADE)
     def __str__(self):
         return self.title
 
