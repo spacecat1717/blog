@@ -13,4 +13,5 @@ urlpatterns = [
     path('new_topic/', views.new_topic, name='new_topic'),
     path('new_note/<topic_id>/', views.new_note, name='new_note'),
 
+
 ]

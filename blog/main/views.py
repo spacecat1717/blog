@@ -4,6 +4,9 @@ from django.conf import settings
 from .models import Topic, Note
 from .forms import TopicForm, NoteForm
 
+
+"""basic views"""
+
 def index(request):
     return render(request, 'main/index.html')
 
@@ -39,3 +42,4 @@ def new_note(request, topic_id):
             new_note.save()
             return redirect('main:topic', topic_id=topic_id)
     return render (request, 'main/new_note.html', {'topic': topic, 'note_form': note_form})
+

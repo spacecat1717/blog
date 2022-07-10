@@ -3,7 +3,22 @@
 
 <body>
     {% block content %}
-    <h3>Test text</h3>
-    
-    {% endblock %}
+    <div class=" text-center text-light container-fluid">
+        <h1 class="text-light p-4">Test text</h1>
+
+        {% if request.user.is_authenticated %}
+        <p class="p-5 display-4">Welcome  <i class=" display-3 text-info">{{request.user.username|title}}</i>
+        Your email id is <i class="text-success" >{{request.user.email}}
+        </i>
+        </p>
+        <a href="{% url 'account:account' %}" class="btn btn-success"> Update Profile</a>
+
+        <a href="{% url 'account:logout' %}" class="btn btn-danger">LOGOUT</a>
+        </div>
+        {% else %}
+          <p class="text-light">Please <a href="{% url 'account:login' %}">Login</a> or <a href="{% url 'account:register' %}">Register</a> to see Your details</p>
+
+        {% endif %}
+  {% endblock %}
+  </div>
 </body>
