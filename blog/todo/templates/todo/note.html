@@ -1,0 +1,29 @@
+<!--one to do template-->
+{% extends "main/base.html" %}
+
+<body>
+    {% block content %}
+    <section class="py-5 text-center container-fluid" style="background-color: #CCCCCC">
+        <div class="row py-lg-0">
+          <div class="col-sm-3 col-sm-6 mx-auto">
+          </div>
+          <div class="album py-0 bg-light">
+            <div class="container-fluid">
+              <div class="row row-cols-md-3 row-cols-sm-2 row-cols-md-3 g-2">
+                  <div class="col-md-3">
+                      <div class="card shadow-sm">
+                          <div class="card-body">
+                              <h4 class="card-title">{{ note.title }}</h4>
+                              <p class="card-text">{{note.text | linebreaks}}</p>
+                              <p class="card-text">{{ note.status }}</p>
+                              <p class="card-text pricing-card-title">{{note.date}}</p>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+            {% endblock %}
+        </div>
+    </section>
+    
+</body>

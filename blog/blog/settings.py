@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #site apps
     'main',
     'account',
+    'todo',
     #design
     'bootstrap5',
 ]

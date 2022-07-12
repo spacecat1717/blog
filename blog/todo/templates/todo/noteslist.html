@@ -1,0 +1,24 @@
+<!--to do notes list-->
+{% extends "main/base.html" %}
+
+<body>
+    {% block content %}
+    <br>
+    <div>
+      <a href="{% url 'todo:new_todo' %}" class="btn btn-outline-secondary">Add To Do </a>
+    </div>
+    <br>
+    <div class="list-group w-auto">
+        {% for note in notes %}
+        <a href="{% url 'todo:note' note.id  %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827914.png" alt="twbs" width="32" height="32" class="flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6 class="mb-0">{{ note.title }}</h6>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endblock %}
+</body>
