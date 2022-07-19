@@ -1,12 +1,18 @@
 from django import forms
-from .models import ToDoNote
+from .models import ToDoEntry, ToDo
 
-class ToDoNoteForm(forms.ModelForm):
+class ToDoEntryForm(forms.ModelForm):
     class Meta:
-        model = ToDoNote
-        fields = ['title', 'text', 'status']
+        model = ToDoEntry
+        fields = ['text']
+
+class ToDoForm(forms.ModelForm):
+    class Meta:
+        model = ToDo
+        fields = ['title']
+    
 
 
-class ChangeStatus(forms.Form):
-    status = forms.BooleanField(required=False)
-    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+    
+        
+    

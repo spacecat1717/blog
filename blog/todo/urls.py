@@ -5,7 +5,8 @@ from . import views
 app_name = 'todo'
 
 urlpatterns = [
-    path('', views.to_do_notes, name='noteslist'),
-    path('notes/<note_id>', views.to_do_note, name='note'),
-    path('notes/new_todo/', views.to_do_new, name='new_todo'),
-]
+    path('', views.todos, name='todos'),
+    path('new_todo/', views.new_todo, name='new_todo'),
+    path('<todo_id>/edit/', views.todo_edit, name='todo_edit'),
+    
+    ]
