@@ -8,7 +8,7 @@ from .forms import ToDoEntryForm, ToDoForm
 @login_required
 def todos(request):
     todos = ToDo.objects.all()
-    return render(request, 'todos/todos.html', {'todos': todos}) #create a template!!!!!!
+    return render(request, 'todo/todos.html', {'todos': todos}) #create a template!!!!!!
 
 @login_required
 def new_todo(request):
@@ -23,8 +23,28 @@ def new_todo(request):
     return render(request, 'todo/new_todo.html', {'form': form})
 
 @login_required
+def todo(request, todo_id):
+    todo = ToDo.objects.get(id=todo_id)
+    entries = todo.todoentry_set.order_by('id')    
+    return render(request, 'todo/todo.html', {'todo': todo, 'entries': entries})
+    
+
+@login_required
 def todo_edit(request, todo_id):
     pass
     
+@login_required
+def new_entry(request, todo_id):
+    todo = ToDo.objects.get(id=todo_id)
+    if request.method == 'POST':
+        form = ToDoEntryForm(request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.todo = todo
+            new_entry.save()
+            return redirect('todo:todos')
+    form = ToDoEntryForm()
+    return render(request, 'todo/new_entry.html', {'todo': todo, 'form':form})
+            
 
 

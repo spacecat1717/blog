@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% load bootstrap5 %}
+
+<body>
+    {%block content%}
+    <form action="{% url 'todo:new_entry' todo.id %}" method="post" enctype="multipart/form-data" class="form-control form-control-sm">
+        {% csrf_token %}
+        {% bootstrap_form form%}
+        <button class="btn btn-primary" style="background-color: #333333" name='submit' > Submit</button>
+    </form>
+    {%endblock %}
+</body>

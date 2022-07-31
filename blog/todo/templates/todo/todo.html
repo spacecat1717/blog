@@ -1,0 +1,40 @@
+{% extends "main/base.html" %}
+
+<body>
+    {% block content %}
+    <section class="py-5 text-center container-fluid" style="background-color: #CCCCCC">
+          <div class="text-start">
+            <h2> {{ todo.title }}</h2>  
+          </div>   
+          <div>
+            <a href="{% url 'todo:new_entry' todo.id %}" class="btn btn-outline-secondary">Add ToDo Entry</a>
+          </div>   
+          {% for entry in entries %}
+            <div class="text-center">
+                  <ul class="list-group">
+                    <li>
+                      <div class="card shadow-sm" style="width: 18rem;">
+                          <div class="card-body-sm">
+                              <p class="card-text">{{entry.text | linebreaks}}</p>
+                          </div>
+                      </div>
+                    </li>
+                </ul>
+                  {% empty %}
+                  <div class="col-sm-3 col-sm-6 mx-auto">
+                    <h1 class="fw-light">You can add your ToDo note here</h1>
+                  </div>
+                  <div>
+                    <a href="{% url 'todo:new_entry' todo.id %}" class="btn btn-outline-secondary">Add ToDo Entry</a>
+                  </div>                  
+          {% endfor %}
+          <div>
+            <p class="card-text">
+              {{ todo.date_added }}
+            </p>
+          </div>
+    {% endblock %}
+              </div>
+    </section>
+    
+</body>
